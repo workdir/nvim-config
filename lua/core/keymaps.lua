@@ -13,11 +13,13 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 vim.keymap.set('n', '<leader>bb', '<C-^>', { desc = 'Switch to alternate buffer' })
 vim.keymap.set('n', '<leader>bn', ':bnext<cr>', { desc = 'Next buffer' })
 vim.keymap.set('n', '<leader>bp', ':bprevious<cr>', { desc = 'Previous buffer' })
+vim.keymap.set('n', '<leader>pv', vim.cmd.Ex, {desc = "Opens NetRW"})
 
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 vim.keymap.set("n", "<leader>d", function()
   vim.diagnostic.open_float(nil, { wrap = true, scope = "cursor" })
 end, { desc = "Show diagnostic under cursor" })
+
 
 
