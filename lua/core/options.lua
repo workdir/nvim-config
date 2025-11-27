@@ -29,7 +29,24 @@ vim.opt.winborder = 'rounded'
 
 vim.opt.signcolumn = "yes"
 
-vim.opt.formatoptions = vim.opt.formatoptions - { 'o', 'r' } + { 'j' }
+-- works only upon lua files which is not satisfiable
+-- vim.opt.formatoptions = vim.opt.formatoptions - { 'o', 'r' } + { 'j' }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

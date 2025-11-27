@@ -26,4 +26,3 @@ vim.keymap.set('n', 'gK', function()
   vim.diagnostic.config({ virtual_lines = new_config })
 end, { desc = 'Toggle diagnostic virtual_lines' })
 
-vim.keymap.set("n", "<leader>ff", require("fzf-lua").files, { desc = "FzfLua Files" })
