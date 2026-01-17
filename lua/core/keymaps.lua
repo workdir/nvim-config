@@ -26,3 +26,8 @@ vim.keymap.set('n', 'gK', function()
   vim.diagnostic.config({ virtual_lines = new_config })
 end, { desc = 'Toggle diagnostic virtual_lines' })
 
+vim.keymap.set('x', '<leader>c', ":'<,'>normal I//<CR>", { desc = 'Comment selection'})
+vim.keymap.set('x', '<leader>u', ":'<,'>normal ^2x<CR>", { desc = 'Uncomment selection'})
+
+vim.keymap.set('n', '<leader>ff', ": FzfLua files<CR>", { desc = 'Launch fzf on files'})
+
