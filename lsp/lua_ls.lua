@@ -17,6 +17,7 @@ return {
         version = 'LuaJIT',
       },
       diagnostics = {
+        globals = { "vim" }
         -- Get the language server to recognize the `vim` global
       },
     }

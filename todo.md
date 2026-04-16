@@ -1,3 +1,0 @@
-- method to delete all unused buffers (e.g files.d.ts) ✅ :bd ids...
-- command-line mode actions ✅  : Ctrl+p Ctrl+n Ctrl+f - previous, next and find respectively
-                                : q: open command history, exti search modal :q

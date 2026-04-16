@@ -1,5 +1,4 @@
-vim.lsp.enable({"lua_ls", "ts_ls"})
-
+vim.lsp.enable({ "lua_ls", "ts_ls", "css_ls", "html_ls", "cpp_ls" })
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(ev)
     local client = vim.lsp.get_client_by_id(ev.data.client_id)
@@ -37,7 +36,6 @@ vim.diagnostic.config({
     source = true,
     header = "",
     prefix = "",
-    wrap = true,  -- This ensures that the diagnostic message wraps instead of overflowing
+    wrap = true, -- This ensures that the diagnostic message wraps instead of overflowing
   },
 })
-
