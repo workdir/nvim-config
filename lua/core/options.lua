@@ -43,6 +43,7 @@ vim.opt.mouse = "a"
 
 vim.opt.clipboard = "unnamedplus"
 
+vim.opt.background = "dark"
 
 -- works only upon lua files which is not satisfiable
 -- vim.opt.formatoptions = vim.opt.formatoptions - { 'o', 'r' } + { 'j' }
