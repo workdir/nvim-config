@@ -1,0 +1,56 @@
+# ==========================================
+# Luarocks & Dependencies
+# ==========================================
+# Local luarocks directories where dependencies are installed
+.luarocks/
+lua_modules/
+manifest
+
+# ==========================================
+# Compiled Code & Build Artifacts
+# ==========================================
+# Compiled Lua bytecode
+*.luac
+
+# Dynamic libraries (if you are compiling C modules for Lua)
+*.so
+*.dll
+*.dylib
+*.o
+*.obj
+*.a
+*.lib
+
+# Build directories (e.g., CMake, Luamake, or custom makefiles)
+build/
+dist/
+bin/
+
+# ==========================================
+# Testing & Coverage
+# ==========================================
+# Busted testing framework logs/coverage
+.busted
+luacov.stats.out
+luacov.report.out
+
+# ==========================================
+# Development & Editor Tools
+# ==========================================
+# Lua Language Server (Emylua / EmmyLua / lua-language-server)
+.luarc.json
+.directory
+.vscode/
+# Keep VS Code launch configurations if you share them with the team:
+# !.vscode/launch.json
+
+# Neovim / Vim swap and backup files
+*.swp
+*.swo
+*~
+
+# macOS and Windows system files
+.DS_Store
+Thumbs.db
+# git
+.git
