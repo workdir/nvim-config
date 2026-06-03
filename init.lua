@@ -17,6 +17,14 @@ vim.o.number = true -- Show line numbers in a column.
 -- Affects the 'number' option above, see `:h number_relativenumber`.
 vim.o.relativenumber = true
 
+-- indentation
+vim.opt.expandtab = true      -- use spaces instead of tabs
+vim.opt.shiftwidth = 2        -- indentation size when you press >> or auto-indent
+vim.opt.tabstop = 2           -- how tabs are displayed
+vim.opt.softtabstop = 2       -- how backspace behaves with tabs/spaces
+-- vim.opt.smartindent = true    -- basic intelligent indentation | just copy the indent form the line above 
+-- vim.opt.autoindent = true     -- copy indent from previous line | uses c like syntax
+
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
 vim.o.ignorecase = true
 vim.o.smartcase = true
@@ -46,11 +54,12 @@ vim.keymap.set({ 'n' }, '<A-j>', '<C-w>j')
 vim.keymap.set({ 'n' }, '<A-k>', '<C-w>k')
 vim.keymap.set({ 'n' }, '<A-l>', '<C-w>l')
 
--- adjustment
+-- clipboard 
+vim.g.loaded_clipboard_provider = 1 -- disable clipboard provider entirely
+
 vim.keymap.set({'n','v'}, '<leader>c', function()
   vim.fn.system('clip.exe', vim.fn.getreg('"'))
 end)
--- adjustment
 
 -- print message
 
@@ -98,9 +107,34 @@ vim.pack.add({
   'https://github.com/stevearc/quicker.nvim',
   -- Git integration
   'https://github.com/lewis6991/gitsigns.nvim',
+  -- Treesitter
+  {
+    src = 'https://github.com/nvim-treesitter/nvim-treesitter',
+    version = 'main',
+  },
 })
 
 require('fzf-lua').setup { fzf_colors = true }
 require('mini.completion').setup {}
 require('quicker').setup {}
 require('gitsigns').setup {}
+
+require('nvim-treesitter').setup {}
+
+local ts_languages = { 
+  'lua', 
+  'json',
+  'markdown',
+  'query',
+}
+
+require('nvim-treesitter').install(ts_languages)
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = ts_languages,
+  callback = function() 
+    vim.treesitter.start() 
+    vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+  end,
+})
+
