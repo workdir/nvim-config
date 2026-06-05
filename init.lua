@@ -112,14 +112,17 @@ vim.pack.add({
     src = 'https://github.com/nvim-treesitter/nvim-treesitter',
     version = 'main',
   },
+  -- Treesitter-textobjects
+  {
+    src = 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects',
+    version = 'main'
+  }
 })
 
 require('fzf-lua').setup { fzf_colors = true }
 require('mini.completion').setup {}
 require('quicker').setup {}
 require('gitsigns').setup {}
-
-require('nvim-treesitter').setup {}
 
 local ts_languages = { 
   'lua', 
@@ -128,6 +131,11 @@ local ts_languages = {
   'query',
 }
 
+for _, lang in ipairs(ts_languages) do
+  vim.g['no_' .. lang .. '_maps'] = true
+end
+
+require('nvim-treesitter').setup {}
 require('nvim-treesitter').install(ts_languages)
 
 vim.api.nvim_create_autocmd('FileType', {
@@ -138,3 +146,26 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
+require('nvim-treesitter-textobjects').setup({
+  lookahead = true,
+})
+
+vim.keymap.set({ "x", "o" }, "am", function()
+  require "nvim-treesitter-textobjects.select".select_textobject("@function.outer", "textobjects")
+end)
+vim.keymap.set({ "x", "o" }, "im", function()
+  require "nvim-treesitter-textobjects.select".select_textobject("@function.inner", "textobjects")
+end)
+vim.keymap.set({ "x", "o" }, "ac", function()
+  require "nvim-treesitter-textobjects.select".select_textobject("@class.outer", "textobjects")
+end)
+vim.keymap.set({ "x", "o" }, "ic", function()
+  require "nvim-treesitter-textobjects.select".select_textobject("@class.inner", "textobjects")
+end)
+vim.keymap.set({ "x", "o" }, "as", function()
+  require "nvim-treesitter-textobjects.select".select_textobject("@local.scope", "locals")
+end)
+
+vim.keymap.set({ "n", "x", "o" }, "]m", function()
+  require("nvim-treesitter-textobjects.move").goto_next_start("@function.outer", "textobjects")
+end)
