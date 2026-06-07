@@ -116,13 +116,17 @@ vim.pack.add({
   {
     src = 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects',
     version = 'main'
-  }
+  },
+  -- Mason Language Servers
+  'https://github.com/mason-org/mason.nvim',
+  'https://github.com/neovim/nvim-lspconfig'
 })
 
 require('fzf-lua').setup { fzf_colors = true }
 require('mini.completion').setup {}
 require('quicker').setup {}
 require('gitsigns').setup {}
+require('mason').setup {}
 
 local ts_languages = { 
   'lua', 
@@ -165,7 +169,8 @@ end)
 vim.keymap.set({ "x", "o" }, "as", function()
   require "nvim-treesitter-textobjects.select".select_textobject("@local.scope", "locals")
 end)
-
 vim.keymap.set({ "n", "x", "o" }, "]m", function()
   require("nvim-treesitter-textobjects.move").goto_next_start("@function.outer", "textobjects")
 end)
+
+vim.lsp.enable({'lua_ls'})

@@ -22,8 +22,30 @@ analysis
 
 1. nvim-treesitter
     - [x] [very good video watch when you return](https://www.youtube.com/watch?v=onaRTl-fWyI)
-    - [ ] what are treesitter queries | use queries
-    - [ ] text-objects in neovim and how nvim-treesitter extends them
+    - [x] what are treesitter queries | use queries
+    - [x] text-objects in neovim and how nvim-treesitter extends them
         - vim has traditional text objects but nvim-treesitter-textobjects is more precise
 2. - [ ] lsp
 3. - [ ] FazzyFinding in the current buffer and more
+
+# LSP 
+ 
+info
+
+- [ ] complete this definition: LSP facilitates features like go-to-definition, find references, hover,
+completion, rename, format, refactor, etc.
+- [ ] explain what is that: whole-project
+analysis | semantic analysis
+
+
+todo
+
+- [ ] install language servers
+- [ ] define a config
+- [ ] manage autocompletion and auto-formatting
+
+
+# Autocomplition Commands
+
+<C-o>
+<C-x>
