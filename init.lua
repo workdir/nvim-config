@@ -97,8 +97,6 @@ vim.cmd('packadd! nohlsearch')
 
 -- Install third-party plugins via "vim.pack.add()".
 vim.pack.add({
-  -- Quickstart configs for LSP
-  'https://github.com/neovim/nvim-lspconfig',
   -- Fuzzy picker
   'https://github.com/ibhagwan/fzf-lua',
   -- Autocompletion
@@ -136,10 +134,20 @@ local ts_languages = {
   'json',
   'markdown',
   'query',
-  'typescript'
+  'typescript',
+  'bash'
+}
+local ts_filetypes = {
+  'lua', 
+  'json', 
+  'markdown', 
+  'query', 
+  'typescript', 
+  'sh', 
+  'bash' 
 }
 
-for _, lang in ipairs(ts_languages) do
+for _, lang in ipairs(ts_filetypes) do
   vim.g['no_' .. lang .. '_maps'] = true
 end
 
@@ -147,7 +155,7 @@ require('nvim-treesitter').setup {}
 require('nvim-treesitter').install(ts_languages)
 
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = ts_languages,
+  pattern = ts_filetypes,
   callback = function()
     vim.treesitter.start()
     vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
@@ -288,7 +296,7 @@ vim.lsp.config('lua_ls', {
   },
 })
 
-vim.lsp.enable({ 'lua_ls', 'vtsls', 'jsonls' })
+vim.lsp.enable({ 'lua_ls', 'vtsls', 'jsonls', 'bashls' })
 
 vim.opt.background = "dark" -- set this to dark or light
 vim.cmd.colorscheme "oxocarbon"
