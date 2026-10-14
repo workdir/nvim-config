@@ -306,7 +306,7 @@ vim.lsp.config('lua_ls', {
   },
 })
 
-vim.lsp.enable({ 'lua_ls', 'vtsls', 'jsonls', 'bashls' })
+vim.lsp.enable({ 'lua_ls', 'vtsls', 'jsonls', 'bashls', 'sqls' })
 
 vim.opt.background = "dark" -- set this to dark or light
 -- previous vim.cmd.colorscheme "oxocarbon"
