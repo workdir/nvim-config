@@ -120,7 +120,8 @@ vim.pack.add({
   -- Language Servers Config
   'https://github.com/neovim/nvim-lspconfig',
   -- Colorscheme
-  'https://github.com/nyoom-engineering/oxocarbon.nvim'
+  -- previous 'https://github.com/nyoom-engineering/oxocarbon.nvim'
+  'https://github.com/Mofiqul/vscode.nvim'
 })
 
 require('fzf-lua').setup { fzf_colors = true }
@@ -128,6 +129,11 @@ require('mini.completion').setup {}
 require('quicker').setup {}
 require('gitsigns').setup {}
 require('mason').setup {}
+require('vscode').setup {
+  style = "dark",        -- "dark" or "light"
+  transparent = false,
+  italic_comments = true,
+}
 
 local ts_languages = {
   'lua',
@@ -301,4 +307,5 @@ vim.lsp.config('lua_ls', {
 vim.lsp.enable({ 'lua_ls', 'vtsls', 'jsonls', 'bashls' })
 
 vim.opt.background = "dark" -- set this to dark or light
-vim.cmd.colorscheme "oxocarbon"
+-- previous vim.cmd.colorscheme "oxocarbon"
+vim.cmd.colorscheme "vscode"
