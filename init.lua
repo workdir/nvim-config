@@ -142,7 +142,8 @@ local ts_languages = {
   'query',
   'typescript',
   'bash',
-  'kdl'
+  'kdl',
+  'sql'
 }
 local ts_filetypes = {
   'lua', 
@@ -152,7 +153,8 @@ local ts_filetypes = {
   'typescript', 
   'sh', 
   'bash', 
-  'kdl'
+  'kdl',
+  'sql'
 }
 
 for _, lang in ipairs(ts_filetypes) do
