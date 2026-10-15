@@ -313,7 +313,7 @@ vim.lsp.config('sqls', {
   end,
 })
 
-vim.lsp.enable({ 'lua_ls', 'vtsls', 'jsonls', 'bashls', 'sqls' })
+vim.lsp.enable({ 'lua_ls', 'vtsls', 'jsonls', 'bashls', 'sqls', 'sqruff' })
 
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)
