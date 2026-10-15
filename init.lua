@@ -130,7 +130,7 @@ require('quicker').setup {}
 require('gitsigns').setup {}
 require('mason').setup {}
 require('vscode').setup {
-  style = "dark",        -- "dark" or "light"
+  style = "dark", -- "dark" or "light"
   transparent = false,
   italic_comments = true,
 }
@@ -146,13 +146,13 @@ local ts_languages = {
   'sql'
 }
 local ts_filetypes = {
-  'lua', 
-  'json', 
-  'markdown', 
-  'query', 
-  'typescript', 
-  'sh', 
-  'bash', 
+  'lua',
+  'json',
+  'markdown',
+  'query',
+  'typescript',
+  'sh',
+  'bash',
   'kdl',
   'sql'
 }
@@ -293,7 +293,7 @@ end)
 vim.lsp.config('lua_ls', {
   settings = {
     Lua = {
-       diagnostics = {
+      diagnostics = {
         globals = { "vim" },
       },
       -- workspace = { it is just fucking slow
@@ -306,7 +306,32 @@ vim.lsp.config('lua_ls', {
   },
 })
 
+vim.lsp.config('sqls', {
+  on_attach = function(client, bufnr)
+    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.documentRangeFormattingProvider = false
+  end,
+})
+
 vim.lsp.enable({ 'lua_ls', 'vtsls', 'jsonls', 'bashls', 'sqls' })
+
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if not client then return end
+
+    if client:supports_method('textDocument/formatting', args.buf) then
+      local group = vim.api.nvim_create_augroup('LspFormatOnSave_' .. args.buf, { clear = true })
+      vim.api.nvim_create_autocmd('BufWritePre', {
+        group = group,
+        buffer = args.buf,
+        callback = function()
+          vim.lsp.buf.format({ bufnr = args.buf, id = client.id })
+        end,
+      })
+    end
+  end,
+})
 
 vim.opt.background = "dark" -- set this to dark or light
 -- previous vim.cmd.colorscheme "oxocarbon"
